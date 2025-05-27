@@ -1,0 +1,116 @@
+<h1 id="exceptions-lab">Exceptions lab</h1>
+<p>This lab explores <em>Exceptions</em> through the implementation of a
+program to handle exceptions when creating an object that represents a
+circle.</p>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>To be able to develop your test own Exception class.</li>
+<li>To be able to add an Exception mechanism to an existing class.</li>
+<li>To explore the differences between checked and unchecked
+Exceptions.</li>
+<li>To be able to write code that uses a try-catch-finally block.</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p>You will be given code implementing a <code>Circle</code> class and
+will add functionality to create and throw your own exceptions given
+“bad” data in the <code>Circle</code> constructor. You will then write a
+<code>CircleTest</code> class to practice using a <code>try-catch</code>
+block.</p>
+<p>Github classroom link: <strong>LINK IN CANVAS</strong></p>
+<h2 id="exploration">Exploration</h2>
+<p>First we’ll write some code to explore creating and using
+<code>Exception</code> classes. Follow the steps below. You do not need
+to formally answer the questions, but make sure you know what the
+answers are!</p>
+<p>Use the <code>Circle.java</code> code as a basis for the lab. Do not
+make any changes to this file other than the ones described below in
+Steps 4 and 5.</p>
+<h3 id="complete-the-rest-of-these-steps-in-order.">Complete the rest of
+these steps in order.</h3>
+<ol type="1">
+<li>Write a class called <code>CircleException</code> that extends
+<code>Exception</code>.</li>
+</ol>
+<ul>
+<li>Create one constructor that accepts a <code>String</code> message
+and passes that on to the parent constructor.</li>
+</ul>
+<ol start="2" type="1">
+<li>Write a class called <code>ZeroRadiusException</code> that extends
+<code>CircleException</code>.</li>
+</ol>
+<ul>
+<li>Create a default constructor that calls the parent constructor with
+the message <code>"zero radius"</code>. A “default constuctor” is one
+that takes zero parameters.</li>
+</ul>
+<ol start="3" type="1">
+<li>Write a class called <code>NegativeRadiusException</code> that
+extends <code>CircleException</code>.</li>
+</ol>
+<ul>
+<li>Create a <code>private double</code> instance variable to store the
+radius.</li>
+<li>Create a single constructor that accepts a <code>radius</code> as a
+<code>double</code>. - Call the parent constructor with the message
+<code>"negative radius"</code>.</li>
+<li>Update the instance variable with the value passed to the
+constructor.</li>
+<li>Create a <code>public</code> method <code>radius()</code> that
+returns the radius.</li>
+</ul>
+<ol start="4" type="1">
+<li>Modify the Circle class such that it examines the
+<code>radius</code> given in the non-default constructor. Throw a
+<code>ZeroRadiusException</code> if the given radius is 0.
+<strong>Observe that this gives you a compiler error.</strong></li>
+</ol>
+<ul>
+<li>Fix your error by having <code>CircleException</code> extend
+<code>RuntimeException</code> instead of <code>Exception</code>. Why did
+this fix the error? What else could you have done to fix the error?</li>
+</ul>
+<ol start="5" type="1">
+<li><p>Modify the <code>Circle</code> class such that it throws a
+<code>NegativeRadiusException</code> if a negative radius is given to
+the constructor.</p></li>
+<li><p>Create a <code>CircleTest</code> class using the code shown
+below. Compile and run the code. The <code>Circle</code> should only get
+printed if the <code>Circle</code> constructor is successful.
+Why?</p></li>
+</ol>
+<ul>
+<li>Change the value given to your <code>Circle</code> constructor such
+that you try it with a valid radius, a zero radius, and a negative
+radius. When does the Circle get printed? When does the
+<code>"In finally"</code> get printed? When does the <code>"Done"</code>
+get printed?</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> CircleTest </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">try</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         Circle c1 <span class="op">=</span> <span class="kw">new</span> <span class="fu">Circle</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>c1<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span> <span class="cf">catch</span> <span class="op">(</span>CircleException e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>         <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>e<span class="op">.</span><span class="fu">getMessage</span><span class="op">());</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span> <span class="cf">finally</span> <span class="op">{</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;In finally.&quot;</span><span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Done.&quot;</span><span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>   <span class="op">}</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Then change your catch block so you specifically catch
+<code>NegativeRadiusExceptions</code> and
+<code>ZeroRadiusExceptions</code>. In the
+<code>NegativeRadiusException</code> handling code, additionally print
+out the radius.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>e<span class="op">.</span><span class="fu">getMessage</span><span class="op">()</span> <span class="op">+</span> <span class="st">&quot;: &quot;</span> <span class="op">+</span> e<span class="op">.</span><span class="fu">radius</span><span class="op">());</span></span></code></pre></div>
+<p>Experiment again with constructing various valid and invalid
+<code>Circle</code>s.</p>
+<h2 id="submission">Submission</h2>
+<p>Demonstrate your lab during class and submit to GitHub classroom.</p>
