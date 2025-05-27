@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/lab-7_exceptions.iml" filepath="$PROJECT_DIR$/lab-7_exceptions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lab-9_exceptions.iml" filepath="$PROJECT_DIR$/lab-9_exceptions.iml" />
     </modules>
   </component>
 </project>
